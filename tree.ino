@@ -12,7 +12,7 @@
 #define fillDurationMax 60000 //Max duration in milliseconds for fill cycle before it assumes a fault and alarms
 
 /* ---  This voltage needs to be calibrated in situ --- */
-#define spillThreshold 500    // Analog voltage from spill sensor, higher trips spill condition
+#define spillThreshold 500    // Analog voltage from spill sensor, lower trips spill condition
 
 
 bool alarm = false;   //Is the alarm loop running 
