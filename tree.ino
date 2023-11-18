@@ -28,7 +28,8 @@ void alarmAction() {
 }
 
 /* --- Alarm condition check --- */
-void alarmCheck() {                             
+void alarmCheck() {       
+  alarm = false;                      
   if (analogRead(spillSense) < spillThreshold) {  //Check the spill sensor, if it detects water on floor, disable pump and trip alarm
     alarm = true;
     Serial.println("SPILL");
@@ -47,10 +48,10 @@ void alarmCheck() {
   if (alarm == true) {
     alarmAction();
   }
-  else {
+  /* else {
    alarm = false;
    Serial.println("ALARM CLEAR");
-  }
+  } */
 }
 
 /* --- Fill cycle control --- */
@@ -65,6 +66,7 @@ void fill() {
       fillCurrentTime = millis() - fillStartTime;
       if (fillCurrentTime >= fillDurationMax) {
         alarm = true;
+        Serial.println("WATCHDOG TIMEOUT");
         return;
       }
       else {
